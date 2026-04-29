@@ -10,6 +10,7 @@ class ProjectController extends Controller
     public function index()
     {
         // TODO Day 2 (stub): return a placeholder string
+        
         // TODO Day 5: replace with — return view('projects.index', ['projects' => Project::all()]);
         // TODO Day 6: add eager loading — Project::with('tasks')->get() — to fix N+1
         // TODO Day 8: scope to logged-in user — auth()->user()->projects
