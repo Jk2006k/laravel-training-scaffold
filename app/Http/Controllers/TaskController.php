@@ -12,13 +12,13 @@ class TaskController extends Controller
     {
         // TODO Day 5: return view('tasks.index', ['tasks' => $project->tasks]);
         // TODO Day 6: eager load — $project->load('tasks.comments', 'tasks.assignee');
-        abort(501, 'TODO Day 5 — implement task index');
+        return 'Tasks index stub for project ' . $project->id . ' - Day 2';
     }
 
     public function create(Project $project)
     {
         // TODO Day 5: return view('tasks.create', ['project' => $project]);
-        abort(501, 'TODO Day 5 — implement task create');
+        return 'Tasks create stub for project ' . $project->id . ' - Day 2';
     }
 
     public function store(Request $request, Project $project)
