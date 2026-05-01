@@ -10,10 +10,11 @@ class ProjectController extends Controller
     public function index()
     {
         // TODO Day 2 (stub): return a placeholder string
+        // Day 3: return the view with hardcoded dummy data
         // TODO Day 5: replace with — return view('projects.index', ['projects' => Project::all()]);
         // TODO Day 6: add eager loading — Project::with('tasks')->get() — to fix N+1
         // TODO Day 8: scope to logged-in user — auth()->user()->projects
-        return 'Projects index stub - Day 2';
+        return view('projects.index');
     }
 
     public function create()
@@ -32,10 +33,12 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
+        // TODO Day 2 (stub): temporary — just testing the route works or not !!!
+        // Day 3: return the view with hardcoded dummy data
         // TODO Day 5: return view('projects.show', ['project' => $project]);
         // TODO Day 6: load relationships — $project->load('tasks.comments', 'members');
         // TODO Day 9: $this->authorize('view', $project);
-        abort(501, 'TODO Day 5 — implement show');
+        return view('projects.show');
     }
 
     public function edit(Project $project)
