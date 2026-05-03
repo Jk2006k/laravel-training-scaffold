@@ -9,6 +9,8 @@ class Project extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'description', 'status', 'user_id'];
+
     // TODO Day 5: define $fillable — name, description, status, user_id
 
     // TODO Day 6: define relationships

@@ -9,6 +9,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['body', 'user_id', 'task_id'];
+
     // TODO Day 5: define $fillable — body, user_id, task_id
 
     // TODO Day 6: define relationships
