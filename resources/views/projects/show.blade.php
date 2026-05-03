@@ -58,10 +58,10 @@
                 {{-- Edit and Delete action buttons --}}
                 <div class="flex gap-3">
                     <a href="{{ route('projects.edit', $project['id']) }}" 
-                       class="bg-yellow-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-700 transition-colors">
+                       class="bg-yellow-600 text-Black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-700 transition-colors">
                         Edit
                     </a>
-                    <button class="bg-red-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors">
+                    <button class="bg-red-600 text-Black px-4 py-2 rounded-lg font-semibold hover:bg-red-700 transition-colors">
                         Delete
                     </button>
                 </div>
