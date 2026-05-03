@@ -31,7 +31,7 @@ class ProjectController extends Controller
         abort(501, 'TODO Day 5 — implement store');
     }
 
-    public function show(Project $project)
+    public function show($id)
     {
         // TODO Day 2 (stub): temporary — just testing the route works or not !!!
         // Day 3: return the view with hardcoded dummy data
