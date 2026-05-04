@@ -19,30 +19,8 @@
         {{-- Day 3: Hardcoded dummy data using @foreach and Blade components --}}
         {{-- Grid layout: responsive (1 col on mobile, 2 on tablet, 3 on desktop) --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {{-- Sample projects array for Day 3 testing --}}
-            @foreach([
-                [
-                    'id' => 1, 
-                    'name' => 'E-Commerce Platform', 
-                    'description' => 'Build a full-featured e-commerce platform with payment integration', 
-                    'status' => 'active', 
-                    'tasks_count' => 12
-                ],
-                [
-                    'id' => 2, 
-                    'name' => 'Mobile App', 
-                    'description' => 'Develop iOS and Android app for task management', 
-                    'status' => 'active', 
-                    'tasks_count' => 8
-                ],
-                [
-                    'id' => 3, 
-                    'name' => 'Admin Dashboard', 
-                    'description' => 'Create comprehensive admin dashboard with analytics', 
-                    'status' => 'completed', 
-                    'tasks_count' => 5
-                ],
-            ] as $project)
+            {{-- TODO Day 5: replace hardcoded data with real DB data passed from the controller --}}
+            @foreach($projects as $project)
                 {{-- Day 3: Using Blade component <x-project-card /> --}}
                 <x-project-card :project="$project" />
             @endforeach
