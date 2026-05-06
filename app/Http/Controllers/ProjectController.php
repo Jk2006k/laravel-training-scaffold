@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -24,16 +25,12 @@ class ProjectController extends Controller
         return view('projects.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
         // TODO Day 5: validate inline with $request->validate([...]), then Project::create([...])
         // TODO Day 7: replace Request with StoreProjectRequest (Form Request)
         // TODO Day 8: associate with auth()->user() before creating
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status' => 'nullable|string|in:active,pending,completed',
-        ]);
+        $validated = $request->validated();
 
         $validated['user_id'] = User::first()->id ?? 1;
 
@@ -60,16 +57,12 @@ class ProjectController extends Controller
         return view('projects.edit', ['project' => $project]);
     }
 
-    public function update(Request $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
         // TODO Day 5: $project->update([...]) then redirect
         // TODO Day 7: replace Request with UpdateProjectRequest
         // TODO Day 9: $this->authorize('update', $project);
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'status' => 'nullable|string|in:active,pending,completed',
-        ]);
+        $validated = $request->validated();
 
         $project->update($validated);
 

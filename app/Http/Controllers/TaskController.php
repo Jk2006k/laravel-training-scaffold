@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Task;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 
 class TaskController extends Controller
 {
@@ -22,7 +23,7 @@ class TaskController extends Controller
         return 'Tasks create stub for project ' . $project->id . ' - Day 2';
     }
 
-    public function store(Request $request, Project $project)
+    public function store(StoreTaskRequest $request, Project $project)
     {
         // TODO Day 5: $project->tasks()->create([...]);
         // TODO Day 7: use StoreTaskRequest
@@ -34,7 +35,7 @@ class TaskController extends Controller
     {
         // TODO Day 5: return view('tasks.show', ['task' => $task]);
         abort(501, 'TODO Day 5 — implement task show');
-    }
+    }   
 
     public function edit(Task $task)
     {
@@ -43,7 +44,7 @@ class TaskController extends Controller
         abort(501, 'TODO Day 5 — implement task edit');
     }
 
-    public function update(Request $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
         // TODO Day 5: $task->update([...]);
         // TODO Day 7: use UpdateTaskRequest
