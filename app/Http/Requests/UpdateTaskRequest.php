@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateTa extends FormRequest
+class UpdateTaskRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -18,12 +19,28 @@ class UpdateTa extends FormRequest
         //   'name' => 'required|string|max:255',
         //   'description' => 'nullable|string',
         //   'status' => 'required|in:active,archived,completed',
-        return [];
+        return [
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'status' => 'required|in:todo,in_progress,completed',
+            'due_date' => 'nullable|date|after_or_equal:today',
+            'project_id' => 'required|exists:projects,id',
+            'assigned_to_id' => 'nullable|exists:users,id',
+        ];
     }
 
     public function messages(): array
     {
         // TODO Day 7 (optional): customize error messages
-        return [];
+        return [
+            'title.required' => 'Task title is required.',
+            'status.required' => 'Please select a task status.',
+            'status.in' => 'The selected status is invalid.',
+            'due_date.date' => 'Please provide a valid date.',
+            'due_date.after_or_equal' => 'The due date cannot be in the past.',
+            'project_id.required' => 'Please select a project.',
+            'project_id.exists' => 'The selected project does not exist.',
+            'assigned_to_id.exists' => 'The selected user does not exist.',
+        ];
     }
 }
