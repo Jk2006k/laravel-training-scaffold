@@ -17,4 +17,19 @@ class Task extends Model
     //   - project()  → $this->belongsTo(Project::class)
     //   - comments() → $this->hasMany(Comment::class)
     //   - assignee() → $this->belongsTo(User::class, 'assigned_to_id')
+    
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function assignee()
+    {
+        return $this->belongsTo(User::class, 'assigned_to_id');
+    }
 }
