@@ -12,6 +12,7 @@ class TaskController extends Controller
     {
         // TODO Day 5: return view('tasks.index', ['tasks' => $project->tasks]);
         // TODO Day 6: eager load — $project->load('tasks.comments', 'tasks.assignee');
+        $project->load('tasks.comments', 'tasks.assignee');
         return 'Tasks index stub for project ' . $project->id . ' - Day 2';
     }
 

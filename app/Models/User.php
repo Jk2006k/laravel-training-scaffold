@@ -29,6 +29,26 @@ class User extends Authenticatable
     //   - projects()      → $this->belongsToMany(Project::class, 'project_user')
     //   - ownedProjects() → $this->hasMany(Project::class)
     //   - assignedTasks() → $this->hasMany(Task::class, 'assigned_to_id')
+    
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_user');
+    }
+
+    public function ownedProjects()
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function assignedTasks()
+    {
+        return $this->hasMany(Task::class, 'assigned_to_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
     // TODO Day 10: add HasApiTokens trait (after installing Sanctum)
     //   use Laravel\Sanctum\HasApiTokens;

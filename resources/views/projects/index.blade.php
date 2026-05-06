@@ -20,10 +20,12 @@
         {{-- Grid layout: responsive (1 col on mobile, 2 on tablet, 3 on desktop) --}}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {{-- TODO Day 5: replace hardcoded data with real DB data passed from the controller --}}
+
             @foreach($projects as $project)
                 {{-- Day 3: Using Blade component <x-project-card /> --}}
                 <x-project-card :project="$project" />
             @endforeach
+            
         </div>
     </div>
 @endsection

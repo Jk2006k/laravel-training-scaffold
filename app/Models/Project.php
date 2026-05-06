@@ -17,4 +17,24 @@ class Project extends Model
     //   - tasks()    → $this->hasMany(Task::class)
     //   - owner()    → $this->belongsTo(User::class, 'user_id')
     //   - members()  → $this->belongsToMany(User::class, 'project_user')
+    
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'project_user')->withTimestamps();
+    }
+
+    public function comments()
+    {
+        return $this->hasManyThrough(Comment::class, Task::class);
+    }
 }
