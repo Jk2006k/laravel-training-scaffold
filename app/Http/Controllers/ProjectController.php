@@ -39,14 +39,14 @@ class ProjectController extends Controller
         return redirect()->route('projects.index')->with('success', 'Project created successfully');
     }
 
-    public function show($id)
+    public function show(Project $project)
     {
         // TODO Day 2 (stub): temporary — just testing the route works or not !!!
         // Day 3: return the view with hardcoded dummy data
         // TODO Day 5: return view('projects.show', ['project' => $project]);
         // TODO Day 6: load relationships — $project->load('tasks.comments', 'members');
         // TODO Day 9: $this->authorize('view', $project);
-        $project = Project::with('owner', 'tasks.comments', 'tasks.assignee', 'members')->findOrFail($id);
+        $project->load('owner', 'tasks.comments', 'tasks.assignee', 'members');
         return view('projects.show', ['project' => $project]);
     }
 

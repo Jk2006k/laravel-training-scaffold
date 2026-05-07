@@ -23,7 +23,7 @@ class StoreTaskRequest extends FormRequest
             'description' => 'nullable|string',
             'status' => 'required|in:todo,in_progress,completed',
             'due_date' => 'nullable|date|after:today',
-            'project_id' => 'required|exists:projects,id',
+            // 'project_id' => 'required|exists:projects,id',
             'assigned_to_id' => 'nullable|exists:users,id',
         ];
     }
