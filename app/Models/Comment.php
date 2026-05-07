@@ -11,6 +11,11 @@ class Comment extends Model
 
     protected $fillable = ['body', 'user_id', 'task_id'];
 
+    protected $casts = [
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     // TODO Day 5: define $fillable — body, user_id, task_id
 
     // TODO Day 6: define relationships

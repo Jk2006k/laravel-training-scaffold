@@ -11,6 +11,12 @@ class Task extends Model
 
     protected $fillable = ['title', 'description', 'status', 'due_date', 'project_id', 'assigned_to_id'];
 
+    protected $casts = [
+        'due_date' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
+
     // TODO Day 5: define $fillable — title, description, status, due_date, project_id, assigned_to_id
 
     // TODO Day 6: define relationships
