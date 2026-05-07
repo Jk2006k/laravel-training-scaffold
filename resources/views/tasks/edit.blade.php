@@ -14,6 +14,8 @@
                     @csrf
                     @method('PUT')
 
+                    <input type="hidden" name="project_id" value="{{ $task->project_id }}">
+
                     <div class="mb-6">
                         <label for="title" class="block text-sm font-semibold text-gray-900 mb-2">Task Title</label>
                         <input type="text" id="title" name="title" value="{{ old('title', $task->title) }}" required

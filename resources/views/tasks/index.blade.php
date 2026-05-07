@@ -61,13 +61,13 @@
                                     View
                                 </a>
                                 <a href="{{ route('projects.tasks.edit', [$project, $task]) }}" 
-                                   class="px-4 py-2 bg-yellow-600 text-white rounded-lg text-sm font-semibold hover:bg-yellow-700 transition-colors">
+                                   class="px-4 py-2 bg-yellow-600 text-Black rounded-lg text-sm font-semibold hover:bg-yellow-700 transition-colors">
                                     Edit
                                 </a>
                                 <form action="{{ route('projects.tasks.destroy', [$project, $task]) }}" method="POST" style="display:inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors"
+                                    <button type="submit" class="px-4 py-2 bg-red-600 text-Black rounded-lg text-sm font-semibold hover:bg-red-700 transition-colors"
                                             onclick="return confirm('Are you sure?')">
                                         Delete
                                     </button>

@@ -15,7 +15,7 @@
     {{-- Tasks count indicator --}}
     <div class="flex items-center justify-between mb-4">
         <span class="text-sm text-gray-600">
-            <span class="font-semibold text-gray-900">0</span> tasks
+            <span class="font-semibold text-gray-900">{{ $project->tasks->count() }}</span> tasks
         </span>
     </div>
 

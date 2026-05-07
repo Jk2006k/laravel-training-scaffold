@@ -60,6 +60,7 @@
                     <h3 class="text-xs font-bold text-gray-600 uppercase tracking-wide">Created On</h3>
                     <p class="text-2xl font-bold text-gray-900 mt-3">{{ $project->created_at->format('M d, Y') }}</p>
                 </div>
+                
             </div>
 
             {{-- Full project description --}}
@@ -81,10 +82,18 @@
             </div>
 
             {{-- Day 3: Using @foreach with Blade component <x-task-item /> --}}
-            {{-- TODO Day 6: replace with $project->tasks to display real tasks --}}
-            <p class="text-gray-600 py-12 text-center text-lg">
-                Tasks will be displayed here on Day 6 when relationships are implemented. <a href="{{ route('projects.tasks.create', $project->id) }}" class="text-blue-600 font-semibold hover:underline">Create one to get started!</a>
-            </p>
+            {{-- Display tasks from the relationship --}}
+            @if ($project->tasks->count() > 0)
+                <div class="space-y-4">
+                    @foreach ($project->tasks as $task)
+                        <x-task-item :task="$task->toArray()" :projectId="$project->id" />
+                    @endforeach
+                </div>
+            @else
+                <p class="text-gray-600 py-12 text-center text-lg">
+                    No tasks yet. <a href="{{ route('projects.tasks.create', $project->id) }}" class="text-blue-600 font-semibold hover:underline">Create one to get started!</a>
+                </p>
+            @endif
         </div>
     </div>
 @endsection

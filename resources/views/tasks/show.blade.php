@@ -14,13 +14,13 @@
             </div>
             <div class="flex gap-2">
                 <a href="{{ route('projects.tasks.edit', [$task->project_id, $task->id]) }}" 
-                   class="px-4 py-2 bg-yellow-600 text-white rounded-lg font-semibold hover:bg-yellow-700 transition-colors">
+                   class="px-4 py-2 bg-yellow-600 text-Black rounded-lg font-semibold hover:bg-yellow-700 transition-colors">
                     Edit
                 </a>
                 <form action="{{ route('projects.tasks.destroy', [$task->project_id, $task->id]) }}" method="POST" style="display:inline">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                    <button type="submit" class="px-4 py-2 bg-red-600 text-Black rounded-lg font-semibold hover:bg-red-700 transition-colors"
                             onclick="return confirm('Are you sure?')">
                         Delete
                     </button>
