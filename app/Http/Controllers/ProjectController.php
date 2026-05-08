@@ -15,8 +15,8 @@ class ProjectController extends Controller
         // Day 3: return the view with hardcoded dummy data
         // TODO Day 5: replace with — return view('projects.index', ['projects' => Project::all()]);
         // TODO Day 6: add eager loading — Project::with('tasks')->get() — to fix N+1
-        // TODO Day 8: scope to logged-in user — auth()->user()->projects
-        return view('projects.index', ['projects' => Project::with('owner', 'tasks', 'members')->get()]);
+        // Day 8: scope to logged-in user — auth()->user()->projects
+        return view('projects.index', ['projects' => auth()->user()->ownedProjects()->with('owner', 'tasks', 'members')->get()]);
     }
 
     public function create()
@@ -29,10 +29,10 @@ class ProjectController extends Controller
     {
         // TODO Day 5: validate inline with $request->validate([...]), then Project::create([...])
         // TODO Day 7: replace Request with StoreProjectRequest (Form Request)
-        // TODO Day 8: associate with auth()->user() before creating
+        // Day 8: associate with auth()->user() before creating
         $validated = $request->validated();
 
-        $validated['user_id'] = User::first()->id ?? 1;
+        $validated['user_id'] = auth()->user()->id;
 
         Project::create($validated);
 
