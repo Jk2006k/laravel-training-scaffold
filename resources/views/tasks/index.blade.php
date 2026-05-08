@@ -1,12 +1,18 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Tasks') }} - {{ $project->name }}
+        </h2>
+    </x-slot>
 
-@section('content')
-    {{-- TODO Day 3: build the tasks list page --}}
-    {{-- Should display all tasks for the current project, grouped or filtered by status --}}
-    {{-- TODO Day 5: replace hardcoded data with real DB data passed from the controller --}}
-    {{-- TODO Day 9: use @can('update', $task) to conditionally show edit/delete buttons --}}
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            {{-- TODO Day 3: build the tasks list page --}}
+            {{-- Should display all tasks for the current project, grouped or filtered by status --}}
+            {{-- TODO Day 5: replace hardcoded data with real DB data passed from the controller --}}
+            {{-- TODO Day 9: use @can('update', $task) to conditionally show edit/delete buttons --}}
 
-    <div class="container mx-auto py-8 px-4">
+            <div class="container mx-auto py-8 px-4">
         <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-8">
             <div>
                 <h1 class="text-4xl font-bold text-gray-900">Tasks</h1>
@@ -94,5 +100,7 @@
                 ← Back to Project
             </a>
         </div>
+            </div>
+        </div>
     </div>
-@endsection
+</x-app-layout>

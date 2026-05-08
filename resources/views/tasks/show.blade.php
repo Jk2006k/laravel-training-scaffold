@@ -1,12 +1,18 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ $task->title }}
+        </h2>
+    </x-slot>
 
-@section('content')
-    {{-- TODO Day 3: build the task detail page --}}
-    {{-- TODO Day 5: pass $task from the controller and display its fields --}}
-    {{-- TODO Day 6: list nested $task->comments --}}
-    {{-- TODO Day 11: if $task->attachment_path exists, show a download link --}}
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            {{-- TODO Day 3: build the task detail page --}}
+            {{-- TODO Day 5: pass $task from the controller and display its fields --}}
+            {{-- TODO Day 6: list nested $task->comments --}}
+            {{-- TODO Day 11: if $task->attachment_path exists, show a download link --}}
 
-    <div class="container mx-auto py-8 px-4">
+            <div class="container mx-auto py-8 px-4">
         <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-8">
             <div>
                 <h1 class="text-4xl font-bold text-gray-900">{{ $task->title }}</h1>
@@ -146,6 +152,7 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </div>
-@endsection
+</x-app-layout>

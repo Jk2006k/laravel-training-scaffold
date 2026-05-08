@@ -1,11 +1,17 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ $project->name }}
+        </h2>
+    </x-slot>
 
-@section('content')
-    {{-- TODO Day 3: build the project detail page --}}
-    {{-- TODO Day 5: pass $project from the controller and display its fields --}}
-    {{-- TODO Day 6: list nested $project->tasks with their $task->comments --}}
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            {{-- TODO Day 3: build the project detail page --}}
+            {{-- TODO Day 5: pass $project from the controller and display its fields --}}
+            {{-- TODO Day 6: list nested $project->tasks with their $task->comments --}}
 
-    <div class="container mx-auto py-8 px-4">
+            <div class="container mx-auto py-8 px-4">
         {{-- Back button --}}
         <div class="mb-6">
             <a href="{{ route('projects.index') }}" 
@@ -95,5 +101,6 @@
                 </p>
             @endif
         </div>
+        </div>
     </div>
-@endsection
+</x-app-layout>

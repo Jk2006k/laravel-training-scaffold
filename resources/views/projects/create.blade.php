@@ -1,11 +1,17 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Create New Project') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-    {{-- TODO Day 3: build the new-project form layout --}}
-    {{-- TODO Day 5: wire POST action and old() helper for repopulation --}}
-    {{-- TODO Day 7: add @error directives to display validation errors --}}
+    <div class="py-12">
+        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+            {{-- TODO Day 3: build the new-project form layout --}}
+            {{-- TODO Day 5: wire POST action and old() helper for repopulation --}}
+            {{-- TODO Day 7: add @error directives to display validation errors --}}
 
-    <div class="container mx-auto py-8 px-4">
+            <div class="container mx-auto py-8 px-4">
         <div class="max-w-2xl mx-auto">
             <h1 class="text-3xl font-bold mb-8">Create New Project</h1>
 
@@ -58,5 +64,6 @@
                 </form>
             </div>
         </div>
+        </div>
     </div>
-@endsection
+</x-app-layout>
