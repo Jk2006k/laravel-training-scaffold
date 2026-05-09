@@ -46,6 +46,7 @@ class ProjectController extends Controller
         // TODO Day 5: return view('projects.show', ['project' => $project]);
         // TODO Day 6: load relationships — $project->load('tasks.comments', 'members');
         // TODO Day 9: $this->authorize('view', $project);
+        $this->authorize('view', $project);
         $project->load('owner', 'tasks.comments', 'tasks.assignee', 'members');
         return view('projects.show', ['project' => $project]);
     }
@@ -54,6 +55,7 @@ class ProjectController extends Controller
     {
         // TODO Day 5: return view('projects.edit', ['project' => $project]);
         // TODO Day 9: $this->authorize('update', $project);
+        $this->authorize('update', $project);
         return view('projects.edit', ['project' => $project]);
     }
 
@@ -62,6 +64,7 @@ class ProjectController extends Controller
         // TODO Day 5: $project->update([...]) then redirect
         // TODO Day 7: replace Request with UpdateProjectRequest
         // TODO Day 9: $this->authorize('update', $project);
+        $this->authorize('update', $project);
         $validated = $request->validated();
 
         $project->update($validated);
@@ -73,6 +76,7 @@ class ProjectController extends Controller
     {
         // TODO Day 5: $project->delete() then redirect
         // TODO Day 9: $this->authorize('delete', $project);
+        $this->authorize('delete', $project);
         $project->delete();
 
         return redirect()->route('projects.index')->with('success', 'Project deleted successfully');
