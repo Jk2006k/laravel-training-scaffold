@@ -34,3 +34,4 @@ class TaskPolicy
     {
         return $user->id === $task->project->user_id || $user->projects()->where('project_id', $task->project_id)->exists();
     }
+}

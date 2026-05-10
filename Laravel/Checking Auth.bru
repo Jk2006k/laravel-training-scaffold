@@ -1,0 +1,11 @@
+meta {
+  name: Checking Auth
+  type: http
+  seq: 7
+}
+
+get {
+  url: http://127.0.0.1:8000/api/projects
+  body: none
+  auth: inherit
+}
