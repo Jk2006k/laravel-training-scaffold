@@ -36,4 +36,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('projects.tasks', TaskController::class);
 });
 
+// Day 9: Admin-only routes
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/users', function () {
+        $users = \App\Models\User::all();
+        return view('admin.users', compact('users'));
+    })->name('admin.users.index');
+});
+
 require __DIR__.'/auth.php';

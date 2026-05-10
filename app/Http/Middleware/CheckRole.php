@@ -14,6 +14,9 @@ class CheckRole
         // Then register this middleware in bootstrap/app.php (Laravel 11+)
         // or app/Http/Kernel.php (Laravel 10) with the alias 'role'
         // so you can use ->middleware('role:admin')
+        if (!auth()->check() || auth()->user()->role !== $role) {
+            abort(403, 'Unauthorized');
+        }
         return $next($request);
     }
 }

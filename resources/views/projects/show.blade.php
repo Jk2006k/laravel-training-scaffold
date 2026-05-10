@@ -31,10 +31,13 @@
                 
                 {{-- Edit and Delete action buttons --}}
                 <div class="flex gap-3">
+                    @can('update', $project)
                     <a href="{{ route('projects.edit', $project->id) }}" 
                        class="bg-yellow-600 text-Black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-700 transition-colors">
                         Edit
                     </a>
+                    @endcan
+                    @can('delete', $project)
                     <form action="{{ route('projects.destroy', $project->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this project?');" style="display:inline;">
                         @csrf
                         @method('DELETE')
@@ -42,6 +45,7 @@
                             Delete
                         </button>
                     </form>
+                    @endcan
                 </div>
             </div>
 

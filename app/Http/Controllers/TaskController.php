@@ -45,6 +45,7 @@ class TaskController extends Controller
     {
         // TODO Day 5: return view('tasks.edit', ['task' => $task]);
         // TODO Day 9: $this->authorize('update', $task);
+        $this->authorize('update', $task);
         return view('tasks.edit', ['task' => $task, 'project' => $project]);
     }
 
@@ -54,6 +55,7 @@ class TaskController extends Controller
         // TODO Day 7: use UpdateTaskRequest
         // TODO Day 9: $this->authorize('update', $task);
         // TODO Day 11: when assigned_to_id changes, dispatch TaskAssigned mail (queued)
+        $this->authorize('update', $task);
         $task->update($request->validated());
 
         return redirect()->route('projects.tasks.show', [$project, $task])
@@ -64,6 +66,7 @@ class TaskController extends Controller
     {
         // TODO Day 5: $task->delete();
         // TODO Day 9: $this->authorize('delete', $task);
+        $this->authorize('delete', $task);
         $task->delete();
 
         return redirect()->route('projects.tasks.index', $project)

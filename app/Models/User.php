@@ -15,6 +15,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
         // TODO Day 9: add 'role' here once you create the migration
     ];
 

@@ -66,10 +66,13 @@
                                    class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors">
                                     View
                                 </a>
+                                @can('update', $task)
                                 <a href="{{ route('projects.tasks.edit', [$project, $task]) }}" 
                                    class="px-4 py-2 bg-yellow-600 text-Black rounded-lg text-sm font-semibold hover:bg-yellow-700 transition-colors">
                                     Edit
                                 </a>
+                                @endcan
+                                @can('delete', $task)
                                 <form action="{{ route('projects.tasks.destroy', [$project, $task]) }}" method="POST" style="display:inline">
                                     @csrf
                                     @method('DELETE')
@@ -78,6 +81,7 @@
                                         Delete
                                     </button>
                                 </form>
+                                @endcan
                             </div>
                         </div>
                     </div>
