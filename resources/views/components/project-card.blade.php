@@ -19,9 +19,28 @@
         </span>
     </div>
 
-    {{-- View details link --}}
-    <a href="{{ route('projects.show', $project->id) }}" 
-       class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition-colors">
-        View Details <span class="ml-1">→</span>
-    </a>
+    {{-- View details and action buttons --}}
+    <div class="flex flex-col md:flex-row gap-3 items-start md:items-center justify-between">
+        <a href="{{ route('projects.show', $project->id) }}" 
+           class="inline-flex items-center text-blue-600 font-semibold hover:text-blue-800 transition-colors">
+            View Details <span class="ml-1">→</span>
+        </a>
+        <div class="flex gap-2">
+            @can('update', $project)
+            <a href="{{ route('projects.edit', $project->id) }}" 
+               class="px-3 py-1 bg-yellow-500 text-white text-sm rounded font-semibold hover:bg-yellow-600 transition-colors">
+                Edit
+            </a>
+            @endcan
+            @can('delete', $project)
+            <form action="{{ route('projects.destroy', $project->id) }}" method="POST" style="display:inline" onsubmit="return confirm('Are you sure you want to delete this project?');">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="px-3 py-1 bg-red-500 text-white text-sm rounded font-semibold hover:bg-red-600 transition-colors">
+                    Delete
+                </button>
+            </form>
+            @endcan
+        </div>
+    </div>
 </div>

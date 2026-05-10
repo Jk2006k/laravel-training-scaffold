@@ -19,10 +19,13 @@
                 <p class="text-gray-600 mt-2">Project: <a href="{{ route('projects.show', $task->project_id) }}" class="text-blue-600 hover:text-blue-800">{{ $task->project->name }}</a></p>
             </div>
             <div class="flex gap-2">
+                @can('update', $task)
                 <a href="{{ route('projects.tasks.edit', [$task->project_id, $task->id]) }}" 
                    class="px-4 py-2 bg-yellow-600 text-Black rounded-lg font-semibold hover:bg-yellow-700 transition-colors">
                     Edit
                 </a>
+                @endcan
+                @can('delete', $task)
                 <form action="{{ route('projects.tasks.destroy', [$task->project_id, $task->id]) }}" method="POST" style="display:inline">
                     @csrf
                     @method('DELETE')
@@ -31,6 +34,7 @@
                         Delete
                     </button>
                 </form>
+                @endcan
             </div>
         </div>
 
