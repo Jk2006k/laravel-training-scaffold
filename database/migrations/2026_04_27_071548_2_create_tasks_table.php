@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->foreignId('assigned_to_id')->nullable()->references('id')->on('users')->onDelete('set null');
             // TODO Day 11: add 'attachment_path' column (string, nullable) for file uploads
+            $table->string('attachment_path')->nullable();
             $table->timestamps();
         });
     }

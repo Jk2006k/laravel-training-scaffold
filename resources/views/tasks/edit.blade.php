@@ -16,7 +16,7 @@
             <h1 class="text-3xl font-bold mb-8">Edit Task</h1>
 
             <div class="bg-white rounded-lg shadow-md p-8">
-                <form action="{{ route('projects.tasks.update', [$task->project_id, $task->id]) }}" method="POST">
+                <form action="{{ route('projects.tasks.update', [$task->project_id, $task->id]) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -75,6 +75,19 @@
                             @endforeach
                         </select>
                         @error('assigned_to_id')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="attachment" class="block text-sm font-semibold text-gray-900 mb-2">Attachment (optional)</label>
+                        @if($task->attachment_path)
+                            <p class="text-sm text-gray-600 mb-2">Current file: <a href="{{ Storage::url($task->attachment_path) }}" class="text-blue-600 hover:underline" target="_blank">Download</a></p>
+                        @endif
+                        <input type="file" id="attachment" name="attachment"
+                               class="w-full px-4 py-2 border @error('attachment') border-red-500 @else border-gray-300 @enderror rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.zip">
+                        @error('attachment')
                             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                         @enderror
                     </div>

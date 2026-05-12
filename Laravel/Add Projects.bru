@@ -6,6 +6,18 @@ meta {
 
 post {
   url: http://127.0.0.1:8000/api/projects
-  body: none
-  auth: inherit
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 1|VJjNCEruKAyvCgMRxODeypYXMw453VdVJO0yPmptc0f4dfe4
+}
+
+body:json {
+  {
+     "name": "Kishoore Testing",
+     "description": "Testing the project",
+     "status": "pending"
+  }
 }

@@ -6,6 +6,13 @@ meta {
 
 post {
   url: http://127.0.0.1:8000/api/login
-  body: none
+  body: json
   auth: inherit
+}
+
+body:json {
+  {
+      "email": "kishoore004@gmail.com",
+      "password": "12345678"
+  }  
 }

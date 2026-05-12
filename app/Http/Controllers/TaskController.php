@@ -6,6 +6,9 @@ use App\Models\Project;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use App\Mail\TaskAssigned;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
 
 class TaskController extends Controller
 {
@@ -27,6 +30,12 @@ class TaskController extends Controller
         // TODO Day 11: handle file upload — Storage::disk('public')->put(...)
         $validated = $request->validated();
         $validated['project_id'] = $project->id;
+        
+        // Handle file upload
+        if ($request->hasFile('attachment')) {
+            $path = $request->file('attachment')->store('task-attachments', 'public');
+            $validated['attachment_path'] = $path;
+        }
         
         $task = Task::create($validated);
 
@@ -56,7 +65,30 @@ class TaskController extends Controller
         // TODO Day 9: $this->authorize('update', $task);
         // TODO Day 11: when assigned_to_id changes, dispatch TaskAssigned mail (queued)
         $this->authorize('update', $task);
-        $task->update($request->validated());
+        $validated = $request->validated();
+        
+        // Handle file upload
+        if ($request->hasFile('attachment')) {
+            // Delete old attachment if exists
+            if ($task->attachment_path) {
+                Storage::disk('public')->delete($task->attachment_path);
+            }
+            $path = $request->file('attachment')->store('task-attachments', 'public');
+            $validated['attachment_path'] = $path;
+        }
+        
+        // Check if assigned_to_id changed and dispatch email
+        $oldAssignedToId = $task->assigned_to_id;
+        $newAssignedToId = $validated['assigned_to_id'] ?? null;
+        
+        $task->update($validated);
+        
+        // Dispatch email if task was newly assigned
+        if ($oldAssignedToId !== $newAssignedToId && $newAssignedToId !== null) {
+            // Load relationships before queuing
+            $task->load('project', 'assignee');
+            Mail::queue(new TaskAssigned($task));
+        }
 
         return redirect()->route('projects.tasks.show', [$project, $task])
                         ->with('success', 'Task updated successfully');

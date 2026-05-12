@@ -83,6 +83,16 @@
                             @endif
                         </div>
 
+                        {{-- Attachment --}}
+                        @if($task->attachment_path)
+                            <div>
+                                <label class="block text-sm font-semibold text-gray-600 mb-2">Attachment</label>
+                                <a href="{{ Storage::url($task->attachment_path) }}" target="_blank" class="text-blue-600 hover:text-blue-800 underline">
+                                    📥 Download File
+                                </a>
+                            </div>
+                        @endif
+
                         {{-- Created/Updated Info --}}
                         <div class="pt-4 border-t border-gray-200">
                             <p class="text-sm text-gray-600">

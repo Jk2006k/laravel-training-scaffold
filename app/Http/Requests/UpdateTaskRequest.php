@@ -26,6 +26,7 @@ class UpdateTaskRequest extends FormRequest
             'due_date' => 'nullable|date|after_or_equal:today',
             'project_id' => 'required|exists:projects,id',
             'assigned_to_id' => 'nullable|exists:users,id',
+            'attachment' => 'nullable|file|max:10240',
         ];
     }
 
