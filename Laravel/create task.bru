@@ -5,7 +5,17 @@ meta {
 }
 
 post {
-  url: 
-  body: none
-  auth: inherit
+  url: http://127.0.0.1:8000/api/projects/48/tasks
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 1|VJjNCEruKAyvCgMRxODeypYXMw453VdVJO0yPmptc0f4dfe4
+}
+
+body:json {
+  {
+     "title": "Kishoore Testing"
+  }
 }
