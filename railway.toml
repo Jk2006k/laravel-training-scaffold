@@ -1,0 +1,5 @@
+[build]
+builder = "nixpacks"
+
+[build.nixpacks]
+packages = ["php82", "nodejs_20", "composer"]
