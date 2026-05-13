@@ -13,9 +13,7 @@ COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
 
-RUN npm install
-
-RUN npm install && npm run build && ls -la public/build
+RUN npm install && npm run build
 
 RUN php artisan config:clear
 RUN php artisan cache:clear
