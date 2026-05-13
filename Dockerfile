@@ -20,9 +20,9 @@ RUN npm install && npm run build
 RUN composer install --no-dev --optimize-autoloader
 
 # Clear caches and configs
-RUN php artisan config:cache
-RUN php artisan route:cache
-RUN php artisan view:cache
+RUN php artisan config:clear
+RUN php artisan cache:clear
+RUN php artisan view:clear
 
 # Configure Apache to serve from public directory
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
