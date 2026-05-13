@@ -1,9 +1,9 @@
 FROM php:8.3-cli
 
 RUN apt-get update && apt-get install -y \
-    git unzip libpq-dev zip
+    git unzip curl libpq-dev libzip-dev zip nodejs npm
 
-RUN docker-php-ext-install pdo pdo_pgsql
+RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql zip
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -12,6 +12,10 @@ WORKDIR /app
 COPY . .
 
 RUN composer install --no-dev --optimize-autoloader
+
+RUN npm install
+
+RUN npm run build
 
 EXPOSE 10000
 
