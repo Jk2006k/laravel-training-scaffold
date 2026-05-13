@@ -13,19 +13,20 @@ WORKDIR /var/www/html
 
 COPY . .
 
-# Build frontend assets
 RUN npm install && npm run build
 
-# Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-# Clear caches and configs
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
 RUN php artisan config:clear
 RUN php artisan cache:clear
 RUN php artisan view:clear
 
-# Configure Apache to serve from public directory
 RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
+
 RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/s|AllowOverride None|AllowOverride All|' /etc/apache2/apache2.conf
 
 EXPOSE 80
