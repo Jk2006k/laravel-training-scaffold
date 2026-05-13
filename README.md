@@ -8,6 +8,10 @@ This codebase is **intentionally incomplete**. Routes are stubs that throw 501 e
 
 Across 12 days, you'll fill in TODO comments aligned with each day's learning topic. By Day 12, this becomes a fully working Task & Project Management System.
 
+## 🚀 Live Deployment
+
+**Deployed on Render:** https://laravel-training-scaffold-fy1t.onrender.com
+
 ## ⚠️ A note on academic honesty
 
 This scaffold was adapted from an existing open-source Laravel project (see Credits at the bottom).
