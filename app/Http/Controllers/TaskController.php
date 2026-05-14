@@ -41,8 +41,12 @@ class TaskController extends Controller
         
         // Send email if task was assigned to someone on creation
         if ($task->assigned_to_id !== null) {
-            $task->load('project', 'assignee');
-            Mail::queue(new TaskAssigned($task));
+            try {
+                $task->load('project', 'assignee');
+                Mail::send(new TaskAssigned($task));
+            } catch (\Exception $e) {
+                \Log::error('Failed to send task assignment email: ' . $e->getMessage());
+            }
         }
 
         return redirect()->route('projects.tasks.show', [$project, $task])
@@ -91,9 +95,13 @@ class TaskController extends Controller
         
         // Dispatch email if task was newly assigned
         if ($oldAssignedToId !== $newAssignedToId && $newAssignedToId !== null) {
-            // Load relationships before queuing
-            $task->load('project', 'assignee');
-            Mail::queue(new TaskAssigned($task));
+            try {
+                // Load relationships before sending
+                $task->load('project', 'assignee');
+                Mail::send(new TaskAssigned($task));
+            } catch (\Exception $e) {
+                \Log::error('Failed to send task assignment email: ' . $e->getMessage());
+            }
         }
 
         return redirect()->route('projects.tasks.show', [$project, $task])

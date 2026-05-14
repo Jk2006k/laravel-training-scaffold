@@ -3,17 +3,12 @@
 namespace App\Mail;
 
 use App\Models\Task;
-use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Queue\SerializesModels;
 
-class TaskAssigned extends Mailable implements ShouldQueue
+class TaskAssigned extends Mailable
 {
-    use Queueable, SerializesModels;
-
     public function __construct(public Task $task)
     {
         // TODO Day 11: receive the Task instance
