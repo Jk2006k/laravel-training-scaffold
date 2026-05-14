@@ -3,3 +3,8 @@ services:
     name: laravel-training-scaffold
     env: docker
     plan: free
+  - type: background_worker
+    name: laravel-queue-worker
+    env: docker
+    plan: free
+    startCommand: php artisan queue:work --sleep=3 --tries=3
