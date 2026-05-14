@@ -3,15 +3,3 @@ builder = "nixpacks"
 
 [build.nixpacks]
 packages = ["php82", "nodejs_20", "composer"]
-
-[deploy]
-restartPolicyType = "unless-stopped"
-restartPolicyMaxRetries = 5
-
-[[services]]
-name = "web"
-startCommand = "vendor/bin/heroku-php-apache2 public/"
-
-[[services]]
-name = "queue-worker"
-startCommand = "php artisan queue:work --sleep=3 --tries=3"
