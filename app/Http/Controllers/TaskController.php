@@ -38,6 +38,12 @@ class TaskController extends Controller
         }
         
         $task = Task::create($validated);
+        
+        // Send email if task was assigned to someone on creation
+        if ($task->assigned_to_id !== null) {
+            $task->load('project', 'assignee');
+            Mail::queue(new TaskAssigned($task));
+        }
 
         return redirect()->route('projects.tasks.show', [$project, $task])
                         ->with('success', 'Task created successfully');
